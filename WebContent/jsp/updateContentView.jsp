@@ -22,6 +22,7 @@
 </style>
 </head>
 <body>
+
 	<br>
 	<b><font size="6" color="gray">게시글 내용</font></b>
 	<br>
@@ -30,52 +31,39 @@
 		<!--  <input type="hidden" name="writer" value="${sessionScope.id}">
 				<input type="hidden" name="title" value="${sessionScope.title}">
 				<input type="hidden" name="content" value="${sessionScope.content}"> -->
-		<table width="700" border="3" bordercolor="lightgray" align="center">
-			<%
+		<%
 			WritingVO vo = (WritingVO) request.getAttribute("select_list");
 
-			if (vo != null) {
-			%>
-
+			%>		
+		<form method = "post" action = "/bbs/board">
+			<input type="hidden" name="action" value="update">
+			<input type="hidden" name="id" value="<%=vo.getId()%>">
+		<table width="700" border="3" bordercolor="lightgray" align="center">
+			
+			
 			<tr>
 				<td id="title">작성자</td>
 				<td><%=vo.getWriter()%></td>
 			</tr>
 			<tr>
-				<td id="title">제 목</td>
-				<td><%=vo.getTitle()%></td>
+				<td id="title">제 목</td>		
+				<td><input name="title" type="text" size="70" maxlength="100"
+					value="<%=vo.getTitle()%>" /></td>
 			</tr>
 			<tr>
 			<td id="title">내 용</td>
-				<td height="200"><table cols="72" rows="20"> <%=vo.getContent()%></table></td>
+				<td><textarea name="content" cols="72" rows="20"> <%=vo.getContent()%>
+				</textarea>
+				</td>
+
 			</tr>
-			<%
-			}
-			%>
 			<tr align="center" valign="middle">
 				<td colspan="5"></td>
-						</div>
 			</tr>
 		</table>
-			<%
-				if (session.getAttribute("id").equals(vo.getWriter())) {
-			%>
-			
-			<button type = "button" onclick="location.href='/bbs/board?action=modify&id=<%=vo.getId()%>'">수정하기
-			</button>
-			
-			<button type = "button" onclick="location.href='/bbs/board?action=delete&id=<%=vo.getId()%>'">삭제하기
-			</button>
-			
-			<form action="/bbs/board?action=delete&pid=<%=vo.getId()%>">
-			<input type = 'button' value = "삭제하기"/>
-			</form> 
-			<% 
-				}else{
-  				%>
-  				<a href='/bbs/board'>메인으로 돌아가기</a>
-  				
-  				<%} %>
-	
+			<input type = 'submit' value = "수정완료"/> 
+			<input type = "reset" name="action" value="재작성">
+			</form>
+				
 </body>
 </html>

@@ -101,13 +101,11 @@ public class WritingDAO implements Writing {
 	public boolean update(WritingVO vo) {
 		boolean result = true;
 		Connection conn = connectDB();
-		try (PreparedStatement pstmt = conn.prepareStatement("update writing set " + "name = ?, " + "title = ?, "
-				+ "writedate = ? " + "content = ? " + "where id = ?");) {
-			pstmt.setString(1, vo.getWriter());
-			pstmt.setString(2, vo.getTitle());
-			pstmt.setString(3, vo.getWriteDate());
-			pstmt.setString(4, vo.getContent());
-			pstmt.setInt(4, vo.getId());
+		try (PreparedStatement pstmt = conn.prepareStatement("update writing set " + "title = ?, "
+				+ "content = ? " + "where id = ?");) {
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setInt(3, vo.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			result = false;

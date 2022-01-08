@@ -62,16 +62,24 @@ public class BoardServlet extends HttpServlet {
 				}
 			} else {
 				if (action.equals("select")) { // show detail content
-					System.out.println(id);
+					
 					boolean result = dao.viewCntIncrease(id);
 					if (!result)
 						request.setAttribute("msg", "viewCnt DB Error..");
 
 					WritingVO vo = dao.listOne(id);
-					System.out.println(vo.getWriter());
 					request.setAttribute("select_list", vo);
 					target_url = "/jsp/contentView.jsp";
 
+				} else if (action.equals("modify")) {
+					System.out.println("efoawifeoiwehewf");
+					boolean result = dao.viewCntIncrease(id);
+					if (!result)
+						request.setAttribute("msg", "viewCnt DB Error..");
+
+					WritingVO vo = dao.listOne(id);
+					request.setAttribute("select_list", vo);
+					target_url = "/jsp/updateContentView.jsp";
 				} else if (action.equals("logout")) {
 					session.setAttribute("state", "nonmember");
 
@@ -129,8 +137,13 @@ public class BoardServlet extends HttpServlet {
 		mvo.setName(name);
 		mvo.setPassword(password);
 		mvo.setPhone(phone);
-
+		
+		int num_id = -1;
 		//vo.setId(0);
+		if (id != null)
+			num_id = Integer.parseInt(request.getParameter("id"));
+		
+		vo.setId(num_id);
 		vo.setWriter(writer);
 		vo.setTitle(title);
 		vo.setContent(content);
@@ -199,6 +212,7 @@ public class BoardServlet extends HttpServlet {
 				}
 			} else { // 수정
 				//vo.setId(Integer.parseInt(action));
+				System.out.println("Update Check");
 				boolean result = dao.update(vo);
 				if (result) {
 					System.out.println("Update success");
