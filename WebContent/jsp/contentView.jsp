@@ -67,9 +67,6 @@
 			<button type = "button" onclick="location.href='/bbs/board?action=delete&id=<%=vo.getId()%>'">삭제하기
 			</button>
 			
-			<form action="/bbs/board?action=delete&pid=<%=vo.getId()%>">
-			<input type = 'button' value = "삭제하기"/>
-			</form> 
 			<% 
 				}else{
   				%>
