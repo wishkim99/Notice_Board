@@ -48,9 +48,9 @@
  
         <tr align="center" valign="middle">
             <td colspan="5">
-                <input type="reset" value="작성취소" >
-                <input type="submit" value="등록" >
-                <input type="button" value="목록" >            
+                <button type="button"
+                  onclick="location.href='/bbs/board'">메인으로</button>
+             <input type="reset" value="작성취소"> <input type="submit" value="등록">          
             </td>
         </tr>
     </table>    
