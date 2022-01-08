@@ -137,13 +137,9 @@ public class BoardServlet extends HttpServlet {
 		mvo.setName(name);
 		mvo.setPassword(password);
 		mvo.setPhone(phone);
-		
-		int num_id = -1;
+	
 		//vo.setId(0);
-		if (id != null)
-			num_id = Integer.parseInt(request.getParameter("id"));
-		
-		vo.setId(num_id);
+	
 		vo.setWriter(writer);
 		vo.setTitle(title);
 		vo.setContent(content);
@@ -213,6 +209,8 @@ public class BoardServlet extends HttpServlet {
 			} else { // 수정
 				//vo.setId(Integer.parseInt(action));
 				System.out.println("Update Check");
+				int wrting_id = Integer.parseInt(request.getParameter("writing_id"));
+				vo.setId(wrting_id);
 				boolean result = dao.update(vo);
 				if (result) {
 					System.out.println("Update success");

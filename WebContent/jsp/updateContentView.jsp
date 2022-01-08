@@ -37,7 +37,7 @@
 			%>		
 		<form method = "post" action = "/bbs/board">
 			<input type="hidden" name="action" value="update">
-			<input type="hidden" name="id" value="<%=vo.getId()%>">
+			<input type="hidden" name="writing_id" value="<%=vo.getId()%>">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			
 			
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 			<td id="title">내 용</td>
-				<td><textarea name="content" cols="72" rows="20"> <%=vo.getContent()%>
+				<td><textarea name="content" cols="72" rows="20"><%=vo.getContent()%>
 				</textarea>
 				</td>
 
