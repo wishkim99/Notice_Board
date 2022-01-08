@@ -18,7 +18,7 @@ public class WritingDAO implements Writing {
 		Connection conn = connectDB();
 		try (Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(
-						"select id, title, writer, date_format(writedate, '%Y년 %m월 %d일'), cnt from writing");) {
+						"select id, title, writer, date_format(writedate, '%Y년 %m월 %d일'), cnt from writing order by id desc");) {
 			WritingVO vo;
 			while (rs.next()) {
 				vo = new WritingVO();
