@@ -82,6 +82,10 @@ public class BoardServlet extends HttpServlet {
 					target_url = "/jsp/updateContentView.jsp";
 				} else if (action.equals("logout")) {
 					session.setAttribute("state", "nonmember");
+					response.setContentType("text/html; charset=UTF-8"); 
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('로그아웃 되었습니다!'); location.href='/bbs/board';</script>");
+					out.close();
 
 				} else { // delete
 					boolean result = dao.delete(id);
